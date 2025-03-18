@@ -11,20 +11,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Save,
-  Bell,
-  Moon,
-  Sun,
-  Lock,
-  User,
-  Shield,
-  Database,
-  Globe,
-  Clock,
-  RefreshCw,
-} from "lucide-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Bell, Moon, Sun, Lock, Globe } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -38,13 +25,6 @@ import {
 import { toast } from "@/components/ui/use-toast";
 
 export default function SettingsPage() {
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [emailNotifications, setEmailNotifications] = useState(true);
-  const [smsNotifications, setSmsNotifications] = useState(false);
-  const [autoLogout, setAutoLogout] = useState("30");
-  const [language, setLanguage] = useState("en");
-  const [dataRetention, setDataRetention] = useState("90");
-
   const [notificationSettings, setNotificationSettings] = useState({
     emailAlerts: true,
     smsAlerts: false,
@@ -83,7 +63,7 @@ export default function SettingsPage() {
 
   const handleDisplayChange = (
     setting: keyof typeof displaySettings,
-    value: any
+    value: string | boolean
   ) => {
     setDisplaySettings({
       ...displaySettings,

@@ -13,9 +13,9 @@ export default function LoginPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    rememberMe: false,
+    email: "admin@mzpolice.gov.in",
+    password: "12345678",
+    rememberMe: true,
   });
   const [errors, setErrors] = useState({
     email: "",
@@ -42,16 +42,10 @@ export default function LoginPage() {
     if (!formData.email) {
       newErrors.email = "Email is required";
       valid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-      valid = false;
     }
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-      valid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
       valid = false;
     }
 
@@ -70,8 +64,11 @@ export default function LoginPage() {
     setTimeout(() => {
       setIsLoading(false);
 
-      // For demo purposes, accept any valid format
-      if (formData.email.includes("@") && formData.password.length >= 6) {
+      // Accept the predefined credentials
+      if (
+        formData.email === "admin@mzpolice.gov.in" &&
+        formData.password === "12345678"
+      ) {
         toast({
           title: "Login successful",
           description: "Redirecting to dashboard...",

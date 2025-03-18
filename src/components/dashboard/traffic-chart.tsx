@@ -186,7 +186,11 @@ export function TrafficChart() {
                         <span className="text-xs font-medium">Total</span>
                         <span className="text-xs font-medium">
                           {payload
-                            .reduce((sum, entry) => sum + (entry.value || 0), 0)
+                            .reduce(
+                              (sum, entry) =>
+                                sum + (entry.value ? Number(entry.value) : 0),
+                              0
+                            )
                             .toLocaleString()}
                         </span>
                       </div>

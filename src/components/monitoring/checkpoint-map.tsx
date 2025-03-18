@@ -213,7 +213,7 @@ export function CheckpointMap() {
     "all" | "active" | "inactive" | "alerts"
   >("all");
   const [showCoverage, setShowCoverage] = useState(true);
-  const mapRef = useRef<google.maps.Map>();
+  const mapRef = useRef<google.maps.Map | null>(null);
 
   const onMapLoad = useCallback((map: google.maps.Map) => {
     mapRef.current = map;
@@ -322,7 +322,12 @@ export function CheckpointMap() {
               />
             </div>
           </div>
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <Select
+            value={statusFilter}
+            onValueChange={(value: "all" | "active" | "inactive" | "alerts") =>
+              setStatusFilter(value)
+            }
+          >
             <SelectTrigger className="w-[180px]">
               <Filter className="h-4 w-4 mr-2" />
               <SelectValue placeholder="Filter by status" />
